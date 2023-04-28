@@ -22,7 +22,7 @@ pipeline{
 		stage('Docker Pushing'){
 			agent any
 			steps{
-				withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
+				withCredentials([usernamePassword(credentialsId: 'dockerHubUser', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
 					sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 					sh "docker push cyberbohu/test-image:latest"
 				}
