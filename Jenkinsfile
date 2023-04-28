@@ -19,5 +19,14 @@ pipeline{
 				sh 'docker build -t cyberbohu/test-image:latest .'
 			}
 		}
+		stage('Docker Pushing'){
+			agent any
+			steps{
+				withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
+					sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+					sh "docker push cyberbohu/test-image:latest"
+				}
+			}
+		}
 	}
 }
