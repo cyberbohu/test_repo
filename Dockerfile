@@ -11,6 +11,7 @@ COPY package*.json ./
 # For production use
 RUN npm ci --only=production
 
+
 # Bundle app source
 COPY . .
 
