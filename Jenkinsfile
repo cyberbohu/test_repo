@@ -13,16 +13,10 @@ pipeline{
 				sh 'npm install'
 			}
 		}
-
-		stage('Test'){
-			agent {
-				docker {
-					image 'node:alpine'
-					args '-p 3000:3000'
-				}
-			}
+		stage("Docker Build"){
+			agent any
 			steps {
-				sh 'npm test'
+				sh 'docker build -t cyberbohu/test-image:latest .'
 			}
 		}
 	}
