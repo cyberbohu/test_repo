@@ -28,5 +28,11 @@ pipeline{
 				}
 			}
 		}
+		stage('Docker Deploying'){
+			agent any
+			steps {
+				sh 'docker run -d -p 80:80 --name react-app -rm cyberbohu/test-image:latest'
+			}
+		}
 	}
 }
