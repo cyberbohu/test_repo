@@ -10,9 +10,10 @@ pipeline{
 				}
 			}
 			steps {
-				sh 'npm install'
+				sh 'npm test'
 			}
 		}
+		
 		stage("Docker Build"){
 			agent any
 			steps {
